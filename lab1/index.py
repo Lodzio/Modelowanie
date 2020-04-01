@@ -12,7 +12,7 @@ def rand():
 
 def sin():
     global seed
-    seed = (np.sin(sin*FREQ*np.pi*2) + 1) /2 
+    seed = (np.sin(seed*FREQ*np.pi*2) + 1) /2 
     return seed
 
 def y2(x):
@@ -25,13 +25,20 @@ def y2(x):
 def y3(x): 
     return -math.log(-x+1)
 
-# # Zadanie 1
-# values = []
-# for i in range(0,N_PROB):
-#     x = rand()
-#     values.append(math.sqrt(x))
-# n, bins, patches = plt.hist(values, 160, facecolor='blue', alpha=0.5)
-# plt.show()
+def laplace(x):
+    if x < 0.5:
+        return math.log(2*x)
+    if x > 0.5:
+        return -math.log(2*(1-x))
+    return 0
+
+# Zadanie 1
+values = []
+for i in range(0,N_PROB):
+    x = sin()
+    values.append(math.sqrt(x))
+n, bins, patches = plt.hist(values, 500, facecolor='blue', alpha=0.5)
+plt.show()
 
 # # Zadanie 2
 # values = []
@@ -39,14 +46,23 @@ def y3(x):
 #     x = rand()
 #     values.append(y2(x))
 
-# n, bins, patches = plt.hist(values, 100, facecolor='blue', alpha=0.5)
+# n, bins, patches = plt.hist(values, 500, facecolor='blue', alpha=0.5)
 # plt.show()
 
-# Zadanie 3
-values = []
-for i in range(0,N_PROB):
-    x = rand()
-    values.append(y3(x*0.99))
+# # Zadanie 3
+# values = []
+# for i in range(0,N_PROB):
+#     x = rand()
+#     values.append(y3(x))
 
-n, bins, patches = plt.hist(values, 100, facecolor='blue', alpha=0.5)
-plt.show()
+# n, bins, patches = plt.hist(values, 500, facecolor='blue', alpha=0.5)
+# plt.show()
+
+# # Zadanie 4
+# values = []
+# for i in range(0,N_PROB):
+#     x = rand()
+#     values.append(laplace(x))
+
+# n, bins, patches = plt.hist(values, 500, facecolor='blue', alpha=0.5)
+# plt.show()
