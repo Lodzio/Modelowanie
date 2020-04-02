@@ -50,7 +50,7 @@ def laplace(x):
 # while len(values) < N_PROB:
 #     y = rand()
 #     x = (rand() * 2) - 1
-#     if f1(x) > y:
+#     if f1(x) > y * 0.5:
 #         values.append(x)
 
 # n, bins, patches = plt.hist(values, 500, facecolor='blue', alpha=0.5)
