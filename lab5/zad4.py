@@ -4,9 +4,10 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import time
 import rand
-N = 500000
-N_f = 200
-h_n = 0.05
+from multiprocessing import Process, Queue
+N = 50000
+L = 10
+N_f = 100
 
 def F(x, values):
     sum = 0
@@ -21,24 +22,43 @@ def K(v):
     else:
         return 0
 
-def estF(x, values):
+def estF(x, values, h_n):
     sumK = 0
     for xn in values:
         sumK += K((xn-x)/h_n)
     return (1/(N*h_n))*sumK
 
-values = []
-for i in range(N):
-    values.append(rand.gauss(1, 1))
-
-valMin = int(min(values))
-valMax = int(max(values))
+valMin = -3 #int(min(values))
+valMax = 5 #int(max(values))
 step = (valMax - valMin)/float(N_f)
-Xs = []
+
+def process(q, h_n):
+    values = []
+    for i in range(N):
+        values.append(rand.gauss(1, 1))
+    errSum=0.0
+    for i in range(N_f):
+        x = (i*step) + valMin
+        errSum += (estF(x, values, h_n) - rand.clearGauss(x, 1, 1))**2
+    q.put(errSum)
+
+h_ns = []
 Ys = [] 
-for i in range(N_f):
-    x = (i*step) + valMin
-    Xs.append(x)
-    Ys.append(estF(x, values) - rand.clearGauss(x, 1, 1))
-plt.plot(Xs, Ys)
+for x in range(15):
+    h_n = (x+1) * 0.05
+    processes = []
+    q = Queue()
+    x = f'{int(x/0.15)}%'
+    print(x)
+    for l in range(L):
+        p = Process(target=process, args=(q, h_n))
+        p.start()
+        processes.append(p)
+    errSum = 0.0
+    for p in processes:
+        p.join()
+        errSum+=q.get()
+    h_ns.append(h_n)
+    Ys.append(errSum/L)
+plt.loglog(h_ns, Ys)
 plt.show()

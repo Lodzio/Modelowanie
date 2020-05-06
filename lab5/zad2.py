@@ -6,7 +6,7 @@ import time
 import rand
 N = 500000
 N_f = 200
-h_n = 0.05
+h_n = 0.005
 
 def F(x, values):
     sum = 0

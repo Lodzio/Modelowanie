@@ -4,7 +4,7 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import time
 import rand
-N = 50000
+N = 500000
 N_f = 200
 h_n = 0.05
 
@@ -52,8 +52,8 @@ values = []
 for i in range(N):
     values.append(rand.gauss(1, 1))
 
-valMin = int(min(values))
-valMax = int(max(values))
+valMin = min(values)
+valMax = max(values)
 step = (valMax - valMin)/float(N_f)
 Xs = []
 Ys = [] 

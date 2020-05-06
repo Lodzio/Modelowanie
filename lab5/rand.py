@@ -40,3 +40,12 @@ def cauchy(m = 0, l = 1):
 def twox():
     x = rand()
     return math.sqrt(x)
+
+
+def xminux():
+    x = rand()
+    if x < 0.5:
+        return math.sqrt(2*x) - 1
+    if x > 0.5:
+        return -math.sqrt(2*(1-x))+1 
+    return 0
