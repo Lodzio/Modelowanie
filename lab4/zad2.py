@@ -15,7 +15,7 @@ def F(x, values):
     return sum / float(len(values))
 
 values = []
-for i in range(500000):
+for i in range(1000000):
     values.append(rand.twox())
 
 Xs = [] 
@@ -25,5 +25,7 @@ for i in range(N_Distro):
     distrox = F(x, values)
     Xs.append(x)
     distro.append(distrox)
+plt.hist(values, 400, facecolor='blue', alpha=0.5)
+plt.show()
 plt.plot(Xs, distro)
 plt.show()

@@ -4,7 +4,7 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import time
 import rand
-N = 500000
+N = 50000
 N_f = 200
 h_n = 0.05
 
@@ -16,8 +16,8 @@ def F(x, values):
     return sum / float(len(values))
 
 def K(v):
-    if v < 0.5 and v > -0.5:
-        return 1
+    if v < 1 and v > -1:
+        return 0.5
     else:
         return 0
 
@@ -27,15 +27,30 @@ def Boxcar(v):
     else:
         return 0
 
+def Gaussian(v):
+    return (1/math.sqrt(2*math.pi))*math.exp(-(v**2)/2)
+
+def Epanechnikov(v):
+    if v < 1 and v > -1:
+        return 0.75*(1-v**2)
+    else:
+        return 0
+
+def Tricube(v):
+    if v < 1 and v > -1:
+        return (70/81.0)*((1-abs(v)**3)**3)
+    else:
+        return 0
+
 def estF(x, values):
     sumK = 0
     for xn in values:
-        sumK += K((xn-x)/h_n)
+        sumK += Tricube((xn-x)/h_n)
     return (1/(N*h_n))*sumK
 
 values = []
 for i in range(N):
-    values.append(rand.gauss(0, 1))
+    values.append(rand.gauss(1, 1))
 
 valMin = int(min(values))
 valMax = int(max(values))

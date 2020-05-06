@@ -29,7 +29,7 @@ def estF(x, values):
 
 values = []
 for i in range(N):
-    values.append(rand.gauss(0, 1))
+    values.append(rand.gauss(1, 1))
 
 valMin = int(min(values))
 valMax = int(max(values))
@@ -39,6 +39,6 @@ Ys = []
 for i in range(N_f):
     x = (i*step) + valMin
     Xs.append(x)
-    Ys.append(estF(x, values) - rand.clearGauss(x, 0, 1))
+    Ys.append(estF(x, values) - rand.clearGauss(x, 1, 1))
 plt.plot(Xs, Ys)
 plt.show()

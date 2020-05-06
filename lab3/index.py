@@ -4,7 +4,7 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import time
 import rand
-L = 20
+L = 10
 miref = 0
 sref = 1
 
@@ -43,18 +43,42 @@ def cycle(N, estHandler, estRefValue):
         estValues.append(estHandler(values))
     return Err(estValues, estRefValue)
 
-# values = []
-# Ns = []
-# for N in range(1000, 100000, 5000):
-#     values.append(cycle(N, mi, miref))
-#     Ns.append(N)
-#     print(N)
-# plt.loglog(Ns, values)
-# plt.show()
+values1 = []
+Ns1 = []
+for N in range(1000, 100000, 5000):
+    values1.append(cycle(N, mi, miref))
+    Ns1.append(N)
+    print(N)
 
-values = []
-for i in range(5000000):
-    x = rand.cauchy()
-    values.append(x)
-plt.hist(values, 400, facecolor='blue', alpha=0.5)
+values2 = []
+Ns2 = []
+for N in range(1000, 100000, 5000):
+    values2.append(cycle(N, s2, sref))
+    Ns2.append(N)
+    print(N)
+
+values3 = []
+Ns3 = []
+for N in range(1000, 100000, 5000):
+    values3.append(cycle(N, S2, sref))
+    Ns3.append(N)
+    print(N)
+    
+plt.loglog(Ns3, values3)
 plt.show()
+plt.loglog(Ns2, values2)
+plt.show()
+plt.loglog(Ns1, values1)
+plt.show()
+
+# values = []
+# for i in range(5000000):
+#     x = rand.cauchy()
+#     values.append(x)
+
+# print("mi", mi(values))
+# print("s2", s2(values))
+# print("S2", S2(values))
+
+# plt.hist(values, 400, facecolor='blue', alpha=0.5)
+# plt.show()

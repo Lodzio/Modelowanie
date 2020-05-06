@@ -29,7 +29,7 @@ def estF(x, values):
 
 values = []
 for i in range(N):
-    values.append(rand.gauss(0, 1))
+    values.append(rand.gauss(1, 1))
 
 valMin = int(min(values))
 valMax = int(max(values))

@@ -31,6 +31,6 @@ for i in range(N_Distro):
     distro.append(f)
 for dis in distro:
     var.append(dis*(1-dis)/float(len(distro)))
-# plt.plot(Xs, var, 'r')
-plt.plot(Xs, distro, 'b')
+plt.plot(Xs, var)
+# plt.plot(Xs, distro)
 plt.show()
