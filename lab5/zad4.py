@@ -60,5 +60,6 @@ for x in range(15):
         errSum+=q.get()
     h_ns.append(h_n)
     Ys.append(errSum/L)
+print(h_ns, Ys)
 plt.loglog(h_ns, Ys)
 plt.show()
