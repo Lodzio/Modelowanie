@@ -37,14 +37,15 @@ for i in range(numOfPoints):
     processes = []
     q = Queue()
         
-    for i in range(L):
-        p = Process(target=model, args=(q, X, N, a))
-        p.start()
-        processes.append(p)
+#     for i in range(L):
+#         p = Process(target=model, args=(q, X, N, a))
+#         p.start()
+#         processes.append(p)
+    model(q, X, N, a)
 
-    for p in processes:
-        p.join()
-        error+=q.get()
+#     for p in processes:
+#         p.join()
+    error+=q.get()
     err.append(error/L)
     ns.append(N)
 print(len(ns), len(err))

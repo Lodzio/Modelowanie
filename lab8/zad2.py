@@ -4,7 +4,7 @@ import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import time
 import rand
-D = 2
+D = 3
 N = 10
 mi = np.ones(D)
 rox = 1

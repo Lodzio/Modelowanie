@@ -75,14 +75,16 @@ def valid(L, est, real):
     q = Queue()
     for i in range(threads):
         step = 2*Q/threads
-        left = (i * step) - Q
-        right = (step * (i + 1)) - Q
-        p = Process(target=subValid, args=(L, est, real, left, right, q))
-        p.start()
-        processes.append(p)
+        left = int((i * step) - Q)
+        right = int((step * (i + 1)) - Q)
+#         p = Process(target=subValid, args=(L, est, real, left, right, q))
+        subValid(L, est, real, left, right, q)
 
-    for p in processes:
-        p.join()
+#         p.start()
+#         processes.append(p)
+
+#     for p in processes:
+#         p.join()
         sum+=q.get()
 
     # for q in range(-Q, Q):
